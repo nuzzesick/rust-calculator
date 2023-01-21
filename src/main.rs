@@ -1,6 +1,7 @@
 fn main() {
 	let mut number_one : String = String::new();
 	let mut number_two : String = String::new();
+	let mut operator : String = String::new();
 
 	println!("Type first number: ");
 
@@ -10,9 +11,22 @@ fn main() {
 
 	std::io::stdin().read_line(&mut number_two).unwrap();
 
-	let number_one_int : u8 = number_one.trim().parse().unwrap();
+	println!("Choose an operator (+ or -): ");
 
-	let number_two_int : u8 = number_two.trim().parse().unwrap(); 
+	std::io::stdin().read_line(&mut operator).unwrap();
 
-	println!("{}", number_one_int + number_two_int);
+	if operator.trim() != "+" && operator.trim() != "-" {
+		println!("Invalid operator!");
+		std::process::exit(1);
+	}
+
+	let number_one_int : i32 = number_one.trim().parse().unwrap();
+
+	let number_two_int : i32 = number_two.trim().parse().unwrap(); 
+
+	if operator.trim() == "+" {
+		println!("{}", number_one_int + number_two_int);
+	} else {
+		println!("{}", number_one_int - number_two_int);
+	}
 }
